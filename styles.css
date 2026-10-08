@@ -1,0 +1,172 @@
+:root {
+  --bg: #fbfaf7;
+  --ink: #1a1a1a;
+  --ink-2: #555;
+  --ink-3: #686868;
+  --rule: #e4e1da;
+  --dot: #2f5d8a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 16px 80px;
+}
+
+a { color: inherit; text-decoration-color: var(--ink-3); text-underline-offset: 2px; }
+
+/* --- Story text ---------------------------------------------------------- */
+
+header { margin-bottom: 56px; padding-bottom: 28px; border-bottom: 1px solid var(--ink); }
+
+h1 {
+  font: 700 clamp(2rem, 6vw, 2.75rem)/1.1 Georgia, "Times New Roman", serif;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+}
+
+.dek {
+  font: 1.2rem/1.45 Georgia, "Times New Roman", serif;
+  color: var(--ink-2);
+  margin: 0;
+  max-width: 36em;
+}
+
+.kicker {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  margin: 0 0 4px;
+}
+
+h2 {
+  font: 700 1.4rem/1.2 Georgia, "Times New Roman", serif;
+  margin: 0 0 6px;
+}
+
+.chart-dek {
+  color: var(--ink-2);
+  margin: 0 0 20px;
+  max-width: 38em;
+}
+
+.transition {
+  font: 1.1rem/1.5 Georgia, "Times New Roman", serif;
+  max-width: 34em;
+  margin: 64px 0 40px;
+}
+
+figure { margin: 0; }
+
+.note {
+  font-size: 0.8rem;
+  color: var(--ink-3);
+  margin-top: 8px;
+}
+
+/* --- Methodology ----------------------------------------------------------- */
+
+.methodology {
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.875rem;
+  color: var(--ink-2);
+  max-width: 40em;
+}
+.methodology h2 { font-size: 1.05rem; color: var(--ink); margin-bottom: 12px; }
+.methodology p { margin: 0 0 12px; }
+.methodology strong { color: var(--ink); }
+.sources { margin: 20px 0 0; padding: 0; list-style: none; }
+.sources li { margin-bottom: 6px; }
+
+/* --- Scatterplot --------------------------------------------------------- */
+
+.chart { position: relative; }
+.chart svg { display: block; overflow: visible; }
+
+.axis text { font-size: 12px; fill: var(--ink-2); }
+.axis .domain { display: none; }
+.axis .tick line { stroke: var(--rule); }
+.axis-label { font-size: 12px; fill: var(--ink-2); }
+
+.dot { fill: var(--dot); fill-opacity: 0.8; stroke: var(--bg); stroke-width: 1; }
+.dot.hollow { fill: var(--bg); fill-opacity: 1; stroke: var(--dot); stroke-width: 1.5; }
+.dot:focus { outline: none; }
+.dot.active { stroke: var(--ink); stroke-width: 2; fill-opacity: 1; }
+
+.trend { stroke: var(--ink-3); stroke-width: 1.25; fill: none; }
+.trend-label { font-size: 11px; fill: var(--ink-3); }
+
+.group-label { font-size: 11px; fill: var(--ink-2); }
+
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 6px 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  max-width: 280px;
+}
+.tooltip[hidden] { display: none; }
+.tooltip strong { display: block; }
+
+/* --- Map ----------------------------------------------------------------- */
+
+.map-controls { margin: 16px 0 12px; }
+
+.metric-toggle { display: inline-flex; border: 1px solid var(--ink); margin-bottom: 12px; }
+.metric-toggle button {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 8px 18px;
+  min-height: 40px;
+  border: 0;
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+}
+.metric-toggle button + button { border-left: 1px solid var(--ink); }
+.metric-toggle button[aria-pressed="true"] { background: var(--ink); color: var(--bg); font-weight: 600; }
+.metric-toggle button:focus-visible { outline: 2px solid var(--dot); outline-offset: 2px; }
+
+.legend { font-size: 0.8rem; color: var(--ink-2); }
+.legend-title { font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.legend ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.legend li { display: flex; align-items: center; gap: 6px; }
+.swatch { width: 14px; height: 14px; flex: none; }
+.swatch.hatch {
+  background: repeating-linear-gradient(45deg, #a8a59d 0 1.5px, #ecebe7 1.5px 4px);
+}
+
+#map { height: 560px; background: var(--bg); }
+@media (max-width: 520px) { #map { height: 440px; } }
+
+.leaflet-container { font: inherit; }
+.map-tooltip { font-size: 13px; line-height: 1.4; border-radius: 0; box-shadow: none; border: 1px solid #ccc; padding: 6px 8px; }
+.map-tooltip .zcta { font-weight: 700; }
+.map-tooltip .secondary { color: var(--ink-3); }
+.basemap { filter: grayscale(1) contrast(0.35) brightness(1.25); }
+/* Leaflet places the tooltip toward the map's center; keeping it narrower than
+   half the map width keeps it on-screen on phones. */
+@media (max-width: 520px) { .map-tooltip { white-space: normal; width: max-content; max-width: 160px; } }
+
+/* Scatterplot annotation: light, with a background halo so text stays legible over grid and dots. */
+.annotation { pointer-events: none; }
+.annotation circle { fill: none; stroke: var(--ink); stroke-width: 1; }
+.annotation text { font-size: 12px; fill: var(--ink-2); paint-order: stroke; stroke: var(--bg); stroke-width: 4px; stroke-linejoin: round; }
+.annotation .annotation-note { fill: var(--ink); font-weight: 600; }
+
+.headline-kicker { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 10px; }

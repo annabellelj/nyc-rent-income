@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NYC Rent &amp; Income</title>
+  <meta name="description" content="Median household income and median gross rent across New York City ZIP Code Tabulation Areas, 2024 ACS 5-Year estimates.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="headline-kicker">2024 ACS 5-Year Estimates</p>
+      <h1>What Income Doesn’t Tell Us About Rent</h1>
+      <p class="dek">Across New York City, median rent generally rises with household income. But areas with similar incomes can have monthly rents that differ by more than $1,500.</p>
+    </header>
+
+    <section id="scatter-section">
+      <p class="kicker">01</p>
+      <h2>How income and rent move together</h2>
+      <p class="chart-dek">Each point represents a ZIP code area in New York City.</p>
+      <figure>
+        <div id="scatter" class="chart"></div>
+        <figcaption class="note">The trend line uses exact estimates only.</figcaption>
+      </figure>
+    </section>
+
+    <p class="transition">Income and rent follow similar patterns across much of the city, but not everywhere.</p>
+
+    <section id="map-section">
+      <p class="kicker">02</p>
+      <h2>Across the city</h2>
+      <div class="map-controls">
+        <div class="metric-toggle" role="group" aria-label="Map metric">
+          <button type="button" data-metric="income" aria-pressed="true">Income</button>
+          <button type="button" data-metric="rent" aria-pressed="false">Rent</button>
+        </div>
+        <div id="map-legend" class="legend" role="group"></div>
+      </div>
+      <figure>
+        <div id="map" role="region" aria-label="Map of NYC ZIP code areas shaded by the selected metric"></div>
+        <figcaption class="note">Classes are rounded quintiles of exact estimates, calculated separately for income and rent.</figcaption>
+      </figure>
+    </section>
+
+    <section id="methodology" class="methodology">
+      <h2>About the data</h2>
+
+      <p><strong>Data.</strong> Income and rent are 2024 American Community Survey 5-Year estimates from the U.S. Census Bureau. The analysis uses Census <a href="https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html">ZIP Code Tabulation Areas (ZCTAs)</a>, which approximate USPS ZIP code service areas but are not identical to them.</p>
+
+      <p><strong>Notes.</strong> Census values reported only as an upper category are shown with a “+”; the trend line uses exact estimates only. ZCTAs with unavailable estimates remain marked as “No estimate.” A small number of border ZCTAs were excluded because only a fraction of their geography falls within New York City.</p>
+
+      <p><strong>Sources.</strong> U.S. Census Bureau (<a href="https://data.census.gov/table/ACSDT5Y2024.B19013">B19013</a>, <a href="https://data.census.gov/table/ACSDT5Y2024.B25064">B25064</a>); NYC Open Data <a href="https://data.cityofnewyork.us/City-Government/ZIP-Code-Tabulation-Areas/35j5-n34v">ZIP Code Tabulation Areas</a>; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script type="module" src="src/scatter.js"></script>
+  <script type="module" src="src/map.js"></script>
+</body>
+</html>
